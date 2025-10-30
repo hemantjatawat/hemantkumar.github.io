@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome — Hemant Kumar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: linear-gradient(135deg,#0f172a 0%,#09203f 100%);
+      --accent1: #ff6b6b;
+      --accent2: #6bffef;
+      --accent3: #ffd56b;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Inter',system-ui,Segoe UI,Roboto,Arial; background:var(--bg1);color:#e6eef8}
+    .wrap{min-height:100vh;display:flex;flex-direction:column}
+
+    /* NAV */
+    header{position:fixed;left:0;right:0;top:18px;z-index:40;display:flex;justify-content:center;pointer-events:none}
+    .nav{width:92%;max-width:1200px;background:linear-gradient(90deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));backdrop-filter:blur(6px);border-radius:14px;padding:10px 18px;display:flex;align-items:center;gap:18px;pointer-events:auto;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:conic-gradient(from 120deg,#ff6b6b,#ffd56b,#6bffef);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071023;font-family:Orbitron}
+    .brand h1{font-size:16px;letter-spacing:0.6px}
+    nav ul{display:flex;gap:12px;list-style:none;margin-left:18px}
+    nav a{padding:8px 12px;border-radius:10px;color: #e6eef8;text-decoration:none;font-weight:600;font-size:14px}
+    nav a:hover{background:rgba(255,255,255,0.03);transform:translateY(-3px)}
+    .cta{margin-left:auto}
+    .cta button{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;padding:10px 14px;border-radius:10px;font-weight:700;color:#071023;cursor:pointer}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 520px;align-items:center;gap:40px;padding:110px 6vw 80px}
+    .left{max-width:720px}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700;color:var(--accent3);margin-bottom:14px}
+    h2.title{font-size:42px;line-height:1.02;font-weight:800;font-family:Orbitron;margin-bottom:12px}
+    p.lead{opacity:0.9;margin-bottom:20px}
+    .options{display:flex;gap:14px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:10px 14px;border-radius:12px;font-weight:700;color:#dff3ff;cursor:pointer;transition:transform .25s}
+    .chip:hover{transform:translateY(-6px)}
+
+    /* SLIDER CARD */
+    .stage{position:relative;width:100%;height:520px;perspective:1400px}
+    .slider{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .card{width:380px;height:460px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow: 0 30px 80px rgba(2,6,23,0.7);transition:transform .9s cubic-bezier(.2,.9,.2,1),opacity .6s}
+    .card .img{width:100%;height:100%;background-size:cover;background-position:center;transform-origin:center;will-change:transform}
+
+    /* multiple cards layered */
+    .card.c0{transform:translate3d(-280px,22px,-220px) rotateY(18deg) scale(.84);opacity:.7}
+    .card.c1{transform:translate3d(-120px,8px,-100px) rotateY(8deg) scale(.9);opacity:.85}
+    .card.c2{transform:translate3d(0,0,0) rotateY(0deg) scale(1);opacity:1}
+    .card.c3{transform:translate3d(120px,8px,-100px) rotateY(-8deg) scale(.9);opacity:.85}
+    .card.c4{transform:translate3d(280px,22px,-220px) rotateY(-18deg) scale(.84);opacity:.7}
+
+    /* glow + caption */
+    .card .meta{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(180deg,transparent,rgba(2,6,23,0.7));color:#fff}
+    .card .meta h3{margin-bottom:6px}
+    .card .meta p{opacity:.9;font-size:13px}
+
+    /* scroll animations */
+    section{padding:80px 6vw}
+    .features{display:flex;gap:18px;flex-wrap:wrap}
+    .feature{flex:1 1 220px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;padding-top:140px}.stage{height:420px}.card{width:320px;height:420px}} 
+    @media (max-width:560px){.card{width:280px;height:360px}.nav{padding:10px}}
+
+    /* fun footer */
+    footer{padding:40px 6vw;background:linear-gradient(0deg,rgba(255,255,255,0.02),transparent)}
+
+    /* subtle entrance */
+    .fadein{opacity:0;transform:translateY(16px);transition:all .7s ease}
+    .inview{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">HK</div>
+          <div>
+            <h1>Hemant Kumar</h1>
+            <div style="font-size:12px;opacity:.8">creative • curious • coder</div>
+          </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#personal">Personal Life</a></li>
+            <li><a href="#edu">Educational Life</a></li>
+            <li><a href="#tour">Tour Life</a></li>
+          </ul>
+        </nav>
+        <div class="cta"><button id="contactBtn">Let's connect</button></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="left">
+          <div class="kicker">Welcome</div>
+          <h2 class="title">Welcome to Hemant Kumar's site — say hello 👋</h2>
+          <p class="lead"> Respect in Nature , talks have flirts  , Study have emotions it's hemant kumar </p>
+          <div class="options">
+            <div class="chip" data-target="#personal">Personal Life</div>
+            <div class="chip" data-target="#edu">Educational Life</div>
+            <div class="chip" data-target="#tour">Tour Life</div>
+            <div class="chip" id="downloadBtn">Download</div>
+          </div>
+        </div>
+
+        <div class="stage" aria-hidden="false">
+          <div class="slider" id="slider">
+            <div class="card c0" data-index="0"><div class="img" style="background-image:url('IMG-20250123-WA0013.jpg');"></div>
+              <div class="meta"><h3>Adventure Shot</h3><p>Crazy mountain moment</p></div>
+            </div>
+            <div class="card c1" data-index="1"><div class="img" style="background-image:url('DSC_4720.JPG')"></div>
+              <div class="meta"><h3>City Lights</h3><p>Night vibes</p></div>
+            </div>
+            <div class="card c2" data-index="2"><div class="img" style="background-image:url('DSC_1273.JPG');"></div>
+              <div class="meta"><h3>Studio Frame</h3><p>Portrait energy</p></div>
+            </div>
+            <div class="card c3" data-index="3"><div class="img" style="background-image:url('IMG-20250123-WA0009.jpg');"></div>
+              <div class="meta"><h3>Coastline</h3><p>Blue water</p></div>
+            </div>
+            <div class="card c4" data-index="4"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?w=1100&q=80');"></div>
+              <div class="meta"><h3>Mountains</h3><p>Peak moments</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="personal" class="fadein">
+        <h2 style="font-family:Orbitron">Personal Life</h2>
+        <div class="features">
+          <div class="feature">
+            <h4>Hobbies</h4>
+            <p>Gadgets, coding, traveling, and coffee experiments.</p>
+          </div>
+          <div class="feature">
+            <h4>Mission</h4>
+            <p>Build small things that make bigger differences.</p>
+          </div>
+          <div class="feature">
+            <h4>Fun</h4>
+            <p>Learning Iron Man-level creative problem solving.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="edu" class="fadein">
+        <h2 style="font-family:Orbitron">Educational Life</h2>
+        <div class="features">
+          <div class="feature"><h4>Study Focus</h4><p>Embedded Systems, Java, Databases, IoT.</p></div>
+          <div class="feature"><h4>Goals</h4><p>Placement, projects, and real product thinking.</p></div>
+          <div class="feature"><h4>Stacks</h4><p>Java, SQL, HTML/CSS/JS, Embedded C.</p></div>
+        </div>
+      </section>
+
+      <section id="tour" class="fadein">
+        <h2 style="font-family:Orbitron">Tour Life</h2>
+        <div class="features">
+          <div class="feature"><h4>Locations</h4><p>Mountains, beaches, and city rooftops.</p></div>
+          <div class="feature"><h4>Photos</h4><p>Captured moments, view-ready slides.</p></div>
+          <div class="feature"><h4>Next Trip</h4><p>Plan: north-west trek — soon.</p></div>
+        </div>
+      </section>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto">
+          <div>© Hemant Kumar • Built with ❤️</div>
+          <div style="opacity:.8">Tip: Open this file locally for best performance</div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // --- slider interactivity + 3D parallax on mouse move + scroll transform ---
+    const slider = document.getElementById('slider');
+    const cards = document.querySelectorAll('.card');
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e)=>{
+      const cx = window.innerWidth/2;
+      const cy = window.innerHeight/2;
+      mouseX = (e.clientX - cx)/cx;
+      mouseY = (e.clientY - cy)/cy;
+      cards.forEach((c,i)=>{
+        const img = c.querySelector('.img');
+        const depth = (i-2)*30;
+        const rx = mouseY*8 + depth*0.06;
+        const ry = mouseX*10 + (i-2)*-4;
+        c.style.transform = `translate3d(${(i-2)*120 + mouseX*40}px, ${Math.abs(i-2)*6 + mouseY*20}px, ${-Math.abs(i-2)*80}px) rotateY(${ry}deg) rotateX(${rx}deg) scale(${1 - Math.abs(i-2)*0.06})`;
+        img.style.transform = `translateX(${mouseX*12}px) translateY(${mouseY*10}px) scale(${1 + Math.abs(mouseX)*0.02})`;
+      });
+    });
+
+    // --- scroll reveals ---
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('inview');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.fadein').forEach(el=>obs.observe(el));
+
+    // --- auto subtle carousel movement on scroll ---
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      slider.style.transform = `translateY(${y* -0.03}px) rotateX(${y*0.01}deg)`;
+    });
+
+    // --- chips navigation ---
+    document.querySelectorAll('.chip').forEach(ch=>{
+      ch.addEventListener('click', ()=>{
+        const target = ch.dataset.target;
+        if(target) document.querySelector(target).scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // --- download as single HTML file (simple) ---
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      alert('Download: Right-click the page and Save As → Webpage, Complete');
+    });
+
+    // contact button
+    document.getElementById('contactBtn').addEventListener('click', ()=>{
+      alert('DM me on LinkedIn / Email: info@example.com (replace with yours)');
+    });
+
+    // mobile friendly: simple touch tilt
+    let touchStartX = 0;
+    window.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX});
+    window.addEventListener('touchmove',(e)=>{const diff=(e.touches[0].clientX-touchStartX)/window.innerWidth;cards.forEach((c,i)=>{c.style.transform = `translate3d(${(i-2)*120 + diff*140}px, ${Math.abs(i-2)*6}px, ${-Math.abs(i-2)*80}px) rotateY(${diff*20 + (i-2)*-4}deg) scale(${1 - Math.abs(i-2)*0.06})`})});
+  </script>
+</body>
+</html>
